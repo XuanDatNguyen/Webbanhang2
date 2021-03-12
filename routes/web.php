@@ -14,6 +14,9 @@
 Route::resource('default','DefaultController');
 Route::resource('category','CategoryController');
 Route::resource('photo','PhotoController');
+Route::resource('vendor','VendorController');
+Route::resource('category','CategoryController');
+
 Route::get('/', function () {
     return view('welcome');
 });

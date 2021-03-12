@@ -4,11 +4,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Quản Lý Danh Mục Sản Phẩm
+            Quản lý nhà cung cấp
+            <small>Preview</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ </a></li>
-            <li class="active">Quản lý danh mục sản phẩm</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Quản lý nhà cung cấp</li>
         </ol>
     </section>
 
@@ -19,7 +20,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thêm Thông Tin Danh Mục Sản Phẩm</h3>
+                        <h3 class="box-title">Thêm Thông Tin Nhà Cung Cấp</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -27,53 +28,49 @@
                         <div class="box-body">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Danh Mục Cha</label>
-                                    <select class="form-control" name="parent_id" id="parent_id">
-                                        <option>option 1</option>
-                                        <option>option 2</option>
-                                        <option>option 3</option>
-                                        <option>option 4</option>
-                                        <option>option 5</option>
-                                    </select>
+                                    <label for="exampleInputEmail1">Tên NCC</label>
+                                    <input required type="text" class="form-control" name="name" id="name" placeholder="Nhập tên NCC">
                                 </div>
                                 <div class="form-group">
-                                    <label>Loại Danh Mục</label>
-                                    <select class="form-control" name="type" id="type">
-                                        <option>Sản Phẩm</option>
-                                        <option>Bài Viết</option>
-
-                                    </select>
+                                    <label for="exampleInputPassword1">Email</label>
+                                    <input required type="email" class="form-control" id="email" name="email" placeholder="Nhập email">
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Tên Danh Mục</label>
-                                    <input required type="text" class="form-control" name="name" id="name"
-                                           placeholder="Nhập tên danh mục">
+                                    <label for="exampleInputPassword1">Điện thoại</label>
+                                    <input required type="text" class="form-control" id="phone" name="phone" placeholder="Nhập SĐT">
                                 </div>
-
-                            </div>
-
-                            <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="exampleInputFile">Ảnh</label>
                                     <input type="file" id="image" name="image">
 
                                 </div>
+                                p
+                            </div>
 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Website</label>
+                                    <input type="text" class="form-control" id="website" placeholder="Nhập website">
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ</label>
+                                    <textarea class="form-control" rows="3" placeholder="Nhập địa chỉ"></textarea>
+                                </div>
                                 <div class="form-group">
                                     <label>Vị trí hiển thị</label>
-                                    <input type="number" class="form-control" min="1" value="1" id="number"
-                                           placeholder="">
+                                    <input type="number" class="form-control" min="1" value="1" id="number" placeholder="">
                                 </div>
-
 
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox" id="is_active" name="is_active"> Hiển thị
                                     </label>
                                 </div>
-
                             </div>
                         </div>
+
+
 
 
                         <!-- /.box-body -->
@@ -83,9 +80,13 @@
                         </div>
                     </form>
                 </div>
+                <!-- /.box -->
 
             </div>
+            <!--/.col (left) -->
+            <!-- right column -->
 
+            <!--/.col (right) -->
         </div>
         <!-- /.row -->
     </section>
