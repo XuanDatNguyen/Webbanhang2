@@ -39,6 +39,13 @@
                     </span>
                 </a>
             </li>
+            <li>
+                <a href="{{route('user.index')}}">
+                    <i class="fa fa-th"></i> <span>Quản Lý Người Dùng</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
 
 
         </ul>
