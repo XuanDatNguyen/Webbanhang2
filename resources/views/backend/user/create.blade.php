@@ -27,7 +27,7 @@
                     <form role="form" action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Chọn Quyền</label>
                                     <select class="form-control" name="role_id" id="role_id">
@@ -37,22 +37,35 @@
                                         <option value="3">Member</option>
                                         <option value="4">Other</option>
                                     </select>
+                                    @if ($errors->has('role_id'))
+                                        {{$errors->first('role_id')}}
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Họ Tên</label>
-                                    <input required type="text" class="form-control" id="name" name="name"
+                                    <input  type="text" class="form-control" id="name" name="name"
                                            placeholder="Nhập họ tên">
+                                    @if ($errors->has('name'))
+                                        {{$errors->first('name')}}
+                                    @endif
                                 </div>
+
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Email</label>
-                                    <input required type="email" class="form-control" id="email" name="email"
+                                    <input type="email" class="form-control" id="email" name="email"
                                            placeholder="Nhập email">
+                                    @if ($errors->has('email'))
+                                        {{$errors->first('email')}}
+                                    @endif
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input required type="password" class="form-control" id="password" name="password"
+                                    <input  type="password" class="form-control" id="password" name="password"
                                            placeholder="Nhập password">
+                                    @if ($errors->has('password'))
+                                        {{$errors->first('password')}}
+                                    @endif
                                 </div>
 
 

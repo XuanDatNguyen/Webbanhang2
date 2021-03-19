@@ -1,14 +1,13 @@
 @extends('backend.layouts.main')
 
 @section('content')
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Quản Lý Người Dùng <a href="{{route('user.create')}}" class="btn bg-purple">  Thêm</a>
+            QL User <a href="{{ route('user.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ </a></li>
-            <li class="active">Quản lý người dùng</li>
+            <li><a href="/"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li class="active">QL Danh Sách - Nhà Cung Cấp</li>
         </ol>
     </section>
 
@@ -17,75 +16,50 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Bordered Table</h3>
+                        <h3 class="box-title">Danh Sách Người Dùng</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table class="table table-bordered">
-                            <tbody><tr>
+                            <tbody>
+                            <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Task</th>
-                                <th>Progress</th>
-                                <th style="width: 40px">Label</th>
+                                <th>Avatar</th>
+                                <th>Tên</th>
+                                <th>Email</th>
+                                <th>Ngày Cấp</th>
+                                <th>Trạng Thái</th>
+                                <th>Hành Động</th>
                             </tr>
-                            <tr>
-                                <td>1.</td>
-                                <td>Update software</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-red">55%</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Clean database</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-yellow">70%</span></td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>Cron job running</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-light-blue">30%</span></td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>Fix and squish bugs</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-green">90%</span></td>
-                            </tr>
-                            </tbody></table>
+
+                            @foreach($data as $key => $item)
+                                <tr>
+                                    <td>{{ $key }}</td>
+                                    <td><img src="{{ asset($item->avatar) }}" width="50" /></td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->email }}</td>
+                                    <td>{{ $item->created_at }}</td>
+                                    <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
+                                    <td class="text-center">
+                                        <a href="{{ route('user.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+
+                            @endforeach
+
+                            </tbody>
+                        </table>
+
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
-                        <ul class="pagination pagination-sm no-margin pull-right">
-                            <li><a href="#">«</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul>
+                        {{ $data->links() }}
                     </div>
                 </div>
                 <!-- /.box -->
-
             </div>
             <!-- /.col -->
-
         </div>
     </section>
 @endsection
