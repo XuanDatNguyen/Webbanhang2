@@ -46,6 +46,34 @@
                     </span>
                 </a>
             </li>
+            <li>
+                <a href="">
+                    <i class="fa fa-th"></i> <span>Quản Lý Sản Phẩm</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa fa-th"></i> <span>Quản Lý Bài Viết</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa fa-th"></i> <span>Quản Lý Thư Viện</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <i class="fa fa-th"></i> <span>Quản Lý Thương Hiệu</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
 
 
         </ul>

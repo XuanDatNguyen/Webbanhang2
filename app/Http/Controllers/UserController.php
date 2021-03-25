@@ -232,17 +232,12 @@ class UserController extends Controller
     {
         // gọi tới hàm destroy của laravel để xóa 1 object
         // DELETE FROM ten_bang WHERE id = 33 -> execute command
-        $isDelete = User::destroy($id);
+        $isDelete = User::destroy($id); //true/false
 
         if ($isDelete) { // xóa thành công
-            $statusCode = 200;
-            $isSuccess = true;
+            return response()->json(['success' => 1, 'message' => 'Success']);
         } else {
-            $statusCode = 400;
-            $isSuccess = false;
+            return response()->json(['success' => 0, 'message' => 'Fail']);
         }
-
-        // Trả về dữ liệu json và trạng thái kèm theo thành công là 200
-        return response()->json(['isSuccess' => $isSuccess], $statusCode);
     }
 }
