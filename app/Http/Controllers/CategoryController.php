@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,7 +15,12 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.category.index');
+        $category = Category::latest()->paginate(15); // select * from user order by id desc limit 20 offset 0
+        // $data = User::all(); // select * from user
+
+        return view('backend.category.index', [
+            'data' => $category
+        ]);
     }
 
     /**

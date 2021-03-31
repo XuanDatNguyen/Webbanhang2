@@ -12,6 +12,8 @@
 */
 Route::get('/', 'HomeController@index')->name('home.index');
 
+
+
 Route::resource('default','DefaultController');
 Route::resource('category','CategoryController');
 Route::resource('photo','PhotoController');

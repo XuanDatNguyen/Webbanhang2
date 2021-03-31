@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            QL User <a href="{{ route('user.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
+            Quản Lý Người Dùng <a href="{{ route('user.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
         </h1>
         <ol class="breadcrumb">
             <li><a href="/"><i class="fa fa-dashboard"></i> Trang chủ</a></li>

@@ -27,11 +27,28 @@
 
             <li>
                 <a href="{{route('category.index')}}">
-                    <i class="fa fa-th"></i> <span>Quản Lý Danh Mục</span>
+                    <i class="fa fa-th-list" aria-hidden="true"></i> <span>Quản Lý Danh Mục</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
             </li>
+
+            <li>
+                <a href="{{route('user.index')}}">
+                    <i class="fa fa-user-circle" aria-hidden="true"></i> <span>Quản Lý Người Dùng</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
+
+            <li>
+                <a href="">
+                    <i class="fa fa-car" aria-hidden="true"></i> <span>Quản Lý Sản Phẩm</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+            </li>
+
             <li>
                 <a href="{{route('vendor.index')}}">
                     <i class="fa fa-th"></i> <span>Quản Lý Nhà Cung Cấp</span>
@@ -39,30 +56,18 @@
                     </span>
                 </a>
             </li>
+
             <li>
-                <a href="{{route('user.index')}}">
-                    <i class="fa fa-th"></i> <span>Quản Lý Người Dùng</span>
+                <a href="">
+                    <i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>Quản Lý Bài Viết</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
             </li>
+
             <li>
                 <a href="">
-                    <i class="fa fa-th"></i> <span>Quản Lý Sản Phẩm</span>
-                    <span class="pull-right-container">
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="fa fa-th"></i> <span>Quản Lý Bài Viết</span>
-                    <span class="pull-right-container">
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="">
-                    <i class="fa fa-th"></i> <span>Quản Lý Thư Viện</span>
+                    <i class="fa fa-book" aria-hidden="true"></i> <span>Quản Lý Thư Viện</span>
                     <span class="pull-right-container">
                     </span>
                 </a>
