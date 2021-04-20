@@ -3,8 +3,14 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Thêm người dùng <a href="{{route('user.index')}}" class="btn bg-purple"><i class="fa fa-list"></i> Danh Sách</a>
+            Quản Lý Người Dùng
+{{--            <a href="{{route('admin.user.index')}}" class="btn bg-purple"><i class="fa fa-list"></i> Danh Sách</a>--}}
         </h1>
+        <ol class="breadcrumb">
+            <li><a href="{{route('admin.product.index')}}"><i class="fa fa-home"></i> Trang Chủ</a></li>
+            <li><a href="{{route('admin.user.index')}}">Quản Lý Người Dùng</a></li>
+            <li class="active">Chỉnh Sửa Người Dùng</li>
+        </ol>
     </section>
 
     <section class="content">
@@ -15,11 +21,11 @@
 
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thông tin người dùng</h3>
+                        <h3 class="box-title">Chỉnh Sửa Người Dùng</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('user.update', ['id' => $data->id ])}}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{route('admin.user.update', ['id' => $data->id ])}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="box-body">
@@ -53,25 +59,27 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1" style="color: red">** Mật khẩu Mới</label>
+                                <label for="exampleInputEmail1" style="color: red"> Mật khẩu Mới</label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="Nhập password">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputFile">New Avatar</label>
+                                <label for="exampleInputFile"> Thay Đổi Ảnh Đại Diện </label>
                                 <input type="file" id="avatar" name="avatar">
                                 <img src="{{ asset($data->avatar) }}" alt="" width="100" style="margin-top: 10px;">
                             </div>
-                            <div class="checkbox">
+                            <div class="form-group">
                                 <label>
-                                    <input {{ ($data->is_active == 1) ? 'checked' : '' }} type="checkbox" value="1" name="is_active"> Kích hoạt tài khoản
+                                    <input {{ ($data->is_active == 1) ? 'checked' : '' }} type="checkbox" value="1" name="is_active"> Kích Hoạt
                                 </label>
+                            </div>
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                                <button type="reset" class="btn btn-light">Hủy</button>
                             </div>
                         </div>
                         <!-- /.box-body -->
 
-                        <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Lưu</button>
-                        </div>
+
                     </form>
                 </div>
                 <!-- /.box -->

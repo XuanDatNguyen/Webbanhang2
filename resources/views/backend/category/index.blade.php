@@ -5,11 +5,12 @@
     <section class="content-header">
 
         <h1>
-            Quản Lý Danh Mục Sản Phẩm <a href="{{ route('category.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>
+            Quản Lý Danh Mục
+            {{--            <a href="{{ route('admin.category.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>--}}
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ </a></li>
-            <li class="active">Quản lý danh mục sản phẩm</li>
+            <li><a href="{{route('admin.product.index')}}"><i class="fa fa-home"></i> Trang Chủ </a></li>
+            <li class="active">Quản Lý Danh Mục</li>
         </ol>
     </section>
 
@@ -25,26 +26,25 @@
                         <table class="table table-bordered">
                             <tbody>
                             <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Ảnh</th>
+                                <th style="width: 10px">STT</th>
                                 <th>Tên Danh Mục </th>
                                 <th>Slug</th>
                                 <th>Danh Mục Cha</th>
                                 <th>Trạng Thái</th>
                                 <th>Vị Trí Hiển Thị</th>
+                                <th>Hành Động</th>
                             </tr>
 
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}">
-                                    <td>{{ $key }}</td>
-                                    <td><img src="{{ asset($item->avatar) }}" width="50" /></td>
+                                    <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->slug }}</td>
                                     <td>{{ $item->parent_id }}</td>
-                                    <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
+                                    <td>{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
                                     <td>{{ $item->position }}</td>
-                                    <td class="text-center">
-                                        <a href="{{ route('category.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
+                                    <td>
+                                        <a href="{{ route('admin.category.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
                                         <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
@@ -87,7 +87,7 @@
                 if (result) { // neu nhấn == ok , sẽ send request ajax
 
                     $.ajax({
-                        url: '/category/'+id, // http://webthucpham.local:8888/user/8
+                        url: '/admin/category/'+id, // http://webthucpham.local:8888/user/8
                         type: 'DELETE', // phương truyền tải dữ liệu
                         data: {
                             // dữ liệu truyền sang nếu có

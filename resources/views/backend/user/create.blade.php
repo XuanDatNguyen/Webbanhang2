@@ -4,12 +4,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Thêm người dùng <a href="{{route('user.index')}}" class="btn bg-purple"> Danh Sách </a>
-
+            Quản Lý Người Dùng
+{{--            <a href="{{route('admin.user.index')}}" class="btn bg-purple"> Danh Sách </a>--}}
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Thông tin người dùng</li>
+            <li><a href="{{route('admin.product.index')}}"><i class="fa fa-home"></i> Trang Chủ</a></li>
+            <li><a href="{{route('admin.user.index')}}">Quản Lý Người Dùng</a></li>
+            <li class="active">Thêm Người Dùng</li>
         </ol>
     </section>
 
@@ -20,18 +21,18 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thêm Thông Tin Nhà Cung Cấp</h3>
+                        <h3 class="box-title">Thêm Người Dùng</h3>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" action="{{route('user.store')}}" method="post" enctype="multipart/form-data">
+                    <form role="form" action="{{route('admin.user.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Chọn Quyền</label>
                                     <select class="form-control" name="role_id" id="role_id">
-                                        <option value="0">--Chọn--</option>
+                                        <option value="0">--Chọn quyền--</option>
                                         <option value="1">Admin</option>
                                         <option value="2">Manager</option>
                                         <option value="3">Member</option>
@@ -68,19 +69,20 @@
                                     @endif
                                 </div>
 
-
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Ảnh Đại Diện</label>
-                                    <input type="file" id="avatar" name="avatar">
-
-                                </div>
-                                <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" value="1" id="is_active" name="is_active"> Kích hoạt tài khoản
+                                        <input type="checkbox" value="1" id="is_active" name="is_active"> Kích Hoạt
                                     </label>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Thêm Ảnh Đại Diện</label>
+                                    <input type="file" id="avatar" name="avatar">
+                                </div>
+
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Tạo</button>
+                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                    <button type="reset" class="btn btn-light">Hủy</button>
                                 </div>
                             </div>
                         </div>

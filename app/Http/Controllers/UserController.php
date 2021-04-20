@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->paginate(15); // select * from user order by id desc limit 20 offset 0
+        $users = User::latest()->paginate(10); // select * from user order by id desc limit 20 offset 0
         // $data = User::all(); // select * from user
 
         return view('backend.user.index', [
@@ -35,7 +35,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('backend.user.create');
+        $user = User::all();
+        return view('backend.user.create', [
+            'data' => $user
+        ]);
     }
 
     public function store(Request $request)
@@ -82,7 +85,7 @@ class UserController extends Controller
         $user->save();
 
         // chuyen dieu huong trang
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.index');
 
     }
     /**
@@ -178,8 +181,6 @@ class UserController extends Controller
             'role_id' => 'required|integer',
             'name' => 'required|max:255',
             'email' => 'required|email'
-            //'password' => 'required|min:6',
-            //'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000'
         ]);
 
         $name  = $request->input('name');
@@ -219,7 +220,7 @@ class UserController extends Controller
         $user->save();
 
         // chuyen dieu huong trang
-        return redirect()->route('user.index');
+        return redirect()->route('admin.user.index');
     }
 
     /**

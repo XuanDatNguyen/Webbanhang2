@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -15,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         //return view('backend.category.index');
-        $category = Category::latest()->paginate(15); // select * from category order by id desc limit 20 offset 0
+        $category = Category::latest()->paginate(10); // select * from category order by id desc limit 20 offset 0
         // $data = User::all(); // select * from user
 
         return view('backend.category.index', [
@@ -31,9 +33,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $data = Category::all();
+        $category = Category::all();
         return view('backend.category.create',[
-            'data' => $data
+            'data' => $category
         ]);
     }
 
@@ -46,6 +48,94 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         // Kiểm tính đúng đắn của dữ liệu
+        $request->validate([
+            //    'parent_id' => 'required|integer',
+            'name' => 'required|max:255',
+            'type' => 'required|integer',
+        ],[
+            'name.required' => 'Bạn cần phải nhập vào họ tên',
+            //   'parent_id.required' => 'Bạn cần phải nhập danh mục cha',
+
+            //   'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
+        ]);
+
+        $name = $request->input('name'); // họ tên
+        $parent_id = (int)$request->input('parent_id'); //
+        $type = $request->input('type'); // phần loai
+        $position = $request->input('position');
+
+        $path_image = '';
+        if ($request->hasFile('image')) {
+            // get file
+            $file = $request->file('image');
+            // get ten
+            $filename = $file->getClientOriginalName();
+            // duong dan upload
+            $path_upload = 'upload/category/';
+            // upload file
+            $file->move($path_upload,$filename);
+            $path_image = $path_upload.$filename;
+        }
+
+        $is_active = 0;
+        if ($request->has('is_active')) { // kiem tra is_active co ton tai khong?
+            $is_active = $request->input('is_active');
+        }
+
+        $category = new Category();
+        $category->name = $name;
+        $category->slug = Str::slug($request->input('name'));
+        $category->type = $type;
+        $category->position = $position;
+        $category->parent_id = $parent_id;
+        $category->image = $path_image;
+        $category->is_active = $is_active;
+
+        $category->save();
+
+        // chuyen dieu huong trang
+        return redirect()->route('admin.category.index');
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $data = Category::all();
+        $category = Category::find($id);
+
+        return view('backend.category.edit', [
+            'data' => $category,
+            'category' => $data
+        ]);
+
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
         $request->validate([
             //    'parent_id' => 'required|integer',
             'name' => 'required|max:255',
@@ -63,70 +153,22 @@ class CategoryController extends Controller
         $type = $request->input('type'); // phần loai
         $position= $request->input('position');
 
-        $path_image = '';
-        if ($request->hasFile('image')) {
-            // get file
-            $file = $request->file('image');
-            // get ten
-            $filename = $file->getClientOriginalName();
-            // duong dan upload
-            $path_upload = 'uploads/category/';
-            // upload file
-            $file->move($path_upload,$filename);
-            $path_image = $path_upload.$filename;
-        }
-
         $is_active = 0;
         if ($request->has('is_active')) { // kiem tra is_active co ton tai khong?
             $is_active = $request->input('is_active');
         }
 
-        $category = new Category();
+        $category = Category::find($id);
         $category->name = $name;
+        $category->slug = Str::slug($request->input('name'));
         $category->type = $type;
         $category->position = $position;
         $category->parent_id = $parent_id;
-        $category->image = $path_image;
-
+        $category->is_active = $is_active;
         $category->save();
 
         // chuyen dieu huong trang
-        return redirect()->route('category.index');
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return redirect()->route('admin.category.index');
     }
 
     /**

@@ -287,8 +287,11 @@
 <script src="/backend/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="/backend/dist/js/pages/dashboard.js"></script>
+
+<script src="/backend/plugins/ckeditor/ckeditor.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/backend/dist/js/demo.js"></script>
+
 
 @yield('my_js')
 </body>
