@@ -3,24 +3,14 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Quản Lý Banner
+            Chỉnh Sửa Banner
+            <a style="margin-left: 91rem;" href="{{ route('admin.banner.index') }}" class="btn bg-orange btn-flat"><i class="fa fa-list" style="margin-right: 10px"></i> Danh sách banner</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="{{route('admin.product.index')}}"><i class="fa fa-home"></i> Trang Chủ</a></li>
-            <li><a href="{{route('admin.banner.index')}}">Quản Lý Banner</a></li>
-            <li class="active">Sửa Banner</li>
-        </ol>
     </section>
-
     <section class="content" >
         <div class="row">
             <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Chỉnh Sửa Banner</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
+                <div class="box box-warning">
                     <form role="form" action="{{route('admin.banner.update', ['id' => $data -> id])}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -37,13 +27,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Loại</label>
-                                        <select class="form-control" name="type">
-                                            <option value="1" {{ ($data->type == '1') ? 'selected' : ''  }}>Slide</option>
-                                            <option value="2" {{ ($data->type == '2') ? 'selected' : ''  }}>Background</option>
-                                            <option value="3" {{ ($data->type == '3') ? 'selected' : ''  }}>Banner right</option>
-                                            <option value="4" {{ ($data->type == '4') ? 'selected' : ''  }}>Banner left</option>
-                                        </select>
+                                        <label for="exampleInputEmail1">Vị trí</label>
+                                        <input  type="number" class="form-control" id="position" name="position" value="{{$data->position}}">
+                                        @if ($errors->has('position'))
+                                            <label> {{ $errors->first('position') }}</label>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -59,17 +47,19 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Vị trí</label>
-                                        <input  type="number" class="form-control" id="position" name="position" value="{{$data->position}}">
-                                        @if ($errors->has('position'))
-                                            <label> {{ $errors->first('position') }}</label>
-                                        @endif
+                                        <label>Loại</label>
+                                        <select class="form-control" name="type">
+                                            <option value="1" {{ ($data->type == '1') ? 'selected' : ''  }}>Slide</option>
+                                            <option value="2" {{ ($data->type == '2') ? 'selected' : ''  }}>Background</option>
+                                            <option value="3" {{ ($data->type == '3') ? 'selected' : ''  }}>Banner right</option>
+                                            <option value="4" {{ ($data->type == '4') ? 'selected' : ''  }}>Banner left</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12"><div class="form-group">
-                                        <label for="exampleInputEmail1">Liên Kết URL</label>
+                                        <label for="exampleInputEmail1">Liên kết URL</label>
                                         <input value="{{$data->url}}" type="text" class="form-control" id="url" name="url" placeholder="Url">
                                     </div></div>
                             </div>
@@ -84,7 +74,7 @@
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Thay Đổi Ảnh</label>
+                                        <label for="exampleInputFile">Thay đổi ảnh</label>
                                         <input type="file" id="image" name="image">
                                         <img src="{{ asset($data->image) }}" width="250" alt="">
                                     </div>
@@ -92,7 +82,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>
-                                            <input {{ ($data->is_active == 1) ? 'checked' : '' }} type="checkbox" value="1" name="is_active">Hiển Thị
+                                            <input {{ ($data->is_active == 1) ? 'checked' : '' }} type="checkbox" value="1" name="is_active">Hiển thị
                                         </label>
                                     </div>
                                 </div>
@@ -100,7 +90,7 @@
                         </div>
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <button type="submit" class="btn btn-warning">Lưu</button>
                             <button type="reset" class="btn btn-light">Hủy</button>
                         </div>
                     </form>

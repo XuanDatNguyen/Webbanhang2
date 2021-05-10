@@ -50,12 +50,12 @@ class ArticleController extends Controller
     {
         $request->validate([
             'title' => 'required|max:255',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|max:10000',
             'summary' => 'required',
             'description' => 'required',
         ],[
             'title.required' => 'Bạn cần phải nhập vào tiêu đề',
-            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
+            'image.mimes' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
             'summary.required' => 'Bạn cần phải nhập vào mô tả vắn tắt',
             'description.required' => 'Bạn cần phải nhập vào mô tả chi tiết',
         ]);

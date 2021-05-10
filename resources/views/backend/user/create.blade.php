@@ -1,36 +1,22 @@
 @extends('backend.layouts.main')
 
 @section('content')
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section class="content-header" >
         <h1>
-            Quản Lý Người Dùng
-{{--            <a href="{{route('admin.user.index')}}" class="btn bg-purple"> Danh Sách </a>--}}
+            Thêm Mới Người dùng
+            <a style="margin-left: 86rem;" href="{{route('admin.user.index')}}" class="btn bg-orange"><i class="fa fa-list"></i> Danh sách người dùng</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="{{route('admin.product.index')}}"><i class="fa fa-home"></i> Trang Chủ</a></li>
-            <li><a href="{{route('admin.user.index')}}">Quản Lý Người Dùng</a></li>
-            <li class="active">Thêm Người Dùng</li>
-        </ol>
     </section>
-
     <section class="content">
         <div class="row">
-            <!-- left column -->
-            <div class="col-md-6">
-                <!-- general form elements -->
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Thêm Người Dùng</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
+            <div class="col-md-12">
+                <div class="box box-warning">
                     <form role="form" action="{{route('admin.user.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Chọn Quyền</label>
+                                    <label>Chọn quyền</label>
                                     <select class="form-control" name="role_id" id="role_id">
                                         <option value="0">--Chọn quyền--</option>
                                         <option value="1">Admin</option>
@@ -43,14 +29,13 @@
                                     @endif
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Họ Tên</label>
+                                    <label for="exampleInputPassword1">Họ tên</label>
                                     <input  type="text" class="form-control" id="name" name="name"
                                            placeholder="Nhập họ tên">
                                     @if ($errors->has('name'))
                                         {{$errors->first('name')}}
                                     @endif
                                 </div>
-
 
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Email</label>
@@ -71,17 +56,17 @@
 
                                 <div class="form-group">
                                     <label>
-                                        <input type="checkbox" value="1" id="is_active" name="is_active"> Kích Hoạt
+                                        <input type="checkbox" value="1" id="is_active" name="is_active"> Kích hoạt
                                     </label>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Thêm Ảnh Đại Diện</label>
+                                    <label for="exampleInputFile">Thêm ảnh</label>
                                     <input type="file" id="avatar" name="avatar">
                                 </div>
 
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                    <button type="submit" class="btn bg-orange">Lưu</button>
                                     <button type="reset" class="btn btn-light">Hủy</button>
                                 </div>
                             </div>

@@ -1,84 +1,56 @@
 @extends('backend.layouts.main')
 
 @section('content')
-    <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Quản Lý Danh Sách - Nhà Cung Cấp
+            Danh Sách Nhà Cung Cấp
+            <a style="margin-left: 83rem;" href="{{ route('admin.vendor.create') }}" class="btn bg-orange btn-flat"><i class="fa fa-plus" style="margin-right: 10px"></i> Thêm nhà cung cấp</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ </a></li>
-            <li class="active">Quản lý danh sách - nhà cung cấp</li>
-        </ol>
     </section>
 
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Bordered Table</h3>
-                    </div>
+                <div class="box box-warning">
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table class="table table-bordered">
-                            <tbody><tr>
-                                <th style="width: 10px">#</th>
-                                <th>Task</th>
-                                <th>Progress</th>
-                                <th style="width: 40px">Label</th>
-                            </tr>
-                            <tr>
-                                <td>1.</td>
-                                <td>Update software</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-red">55%</span></td>
-                            </tr>
-                            <tr>
-                                <td>2.</td>
-                                <td>Clean database</td>
-                                <td>
-                                    <div class="progress progress-xs">
-                                        <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-yellow">70%</span></td>
-                            </tr>
-                            <tr>
-                                <td>3.</td>
-                                <td>Cron job running</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-light-blue">30%</span></td>
-                            </tr>
-                            <tr>
-                                <td>4.</td>
-                                <td>Fix and squish bugs</td>
-                                <td>
-                                    <div class="progress progress-xs progress-striped active">
-                                        <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                                    </div>
-                                </td>
-                                <td><span class="badge bg-green">90%</span></td>
-                            </tr>
-                            </tbody></table>
+                            <tbody>
+                                <tr>
+                                    <th style="text-align: center">STT</th>
+                                    <th style="text-align: center">Hình ảnh</th>
+                                    <th>Nhà cung cấp</th>
+                                    <th style="text-align: center">Hotline</th>
+                                    <th style="width: 20%">Website</th>
+                                    <th style="text-align: center">Vị trí</th>
+                                    <th style="text-align: center">Trạng thái</th>
+                                    <th style="text-align: center">Hành động</th>
+                                </tr>
+                                @foreach($data as $key => $item)
+                                    <tr class="item-{{ $item->id }}">
+                                        <td style="text-align: center">{{ $key+1 }}</td>
+                                        <td style="text-align: center">
+                                            @if( ($item->image))
+                                                <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
+                                            @endif
+                                        </td>
+                                        <td>{{ $item->name }}</td>
+                                        <td style="text-align: center">{{ $item->phone }}</td>
+                                        <td>{{ $item->website }}</td>
+                                        <td style="text-align: center">{{ $item->position }}</td>
+                                        <td style="text-align: center">{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
+                                        <td style="text-align: center">
+                                            <a href="{{ route('admin.vendor.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
+                                            <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
-                        <ul class="pagination pagination-sm no-margin pull-right">
-                            <li><a href="#">«</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul>
+                        {{ $data->links() }}
                     </div>
                 </div>
                 <!-- /.box -->
@@ -89,5 +61,53 @@
         </div>
     </section>
 @endsection
+@section('my_js')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Thiết lập csrf => chổng giả mạo
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                }
+            })
 
+            $('.btn-delete').on('click',function () {
+
+                let id = $(this).data('id');
+
+                let result = confirm("Bạn có chắc chắn muốn xóa ?");
+
+                if (result) { // neu nhấn == ok , sẽ send request ajax
+
+                    $.ajax({
+                        url: '/admin/vendor/'+id, // http://webthucpham.local:8888/user/8
+                        type: 'DELETE', // phương truyền tải dữ liệu
+                        data: {
+                            // dữ liệu truyền sang nếu có
+                            name : 'dung'
+                        },
+                        dataType: "json", // kiểu dữ liệu muốn nhận về
+                        success: function (res) {
+                            //  PHP : $user->name
+                            //  JS: res.name
+
+                            if (res.success != 'undefined' && res.success == 1) { // xóa thành công
+                                $('.item-'+id).remove();
+                            }
+                        },
+                        error: function (e) { // lỗi nếu có
+                            console.log(e);
+                        }
+                    });
+                }
+
+            });
+
+            /*$( ".btn-delete" ).click(function() {
+                alert( "Handler for .click() called." );
+            });*/
+
+        });
+    </script>
+@endsection
 

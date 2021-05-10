@@ -93,6 +93,7 @@ class ProductController extends Controller
         $product->is_hot = $is_hot;
         $product->category_id = $category_id;
         $product->image = $path_image;
+
         $product->save();
 
         // chuyen dieu huong trang

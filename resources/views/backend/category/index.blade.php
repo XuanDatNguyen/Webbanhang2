@@ -1,71 +1,52 @@
 @extends('backend.layouts.main')
 
 @section('content')
-    <!-- Content Header (Page header) -->
     <section class="content-header">
-
         <h1>
-            Quản Lý Danh Mục
-            {{--            <a href="{{ route('admin.category.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>--}}
+            Danh Sách Danh Mục
+            <a style="margin-left:89rem;" href="{{ route('admin.category.create') }}" class="btn bg-orange btn-flat"><i class="fa fa-plus" style="margin-right: 10px"></i> Thêm danh mục</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="{{route('admin.product.index')}}"><i class="fa fa-home"></i> Trang Chủ </a></li>
-            <li class="active">Quản Lý Danh Mục</li>
-        </ol>
     </section>
 
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Danh Sách Danh Mục</h3>
-                    </div>
-                    <!-- /.box-header -->
+                <div class="box box-warning">
                     <div class="box-body">
                         <table class="table table-bordered">
                             <tbody>
                             <tr>
-                                <th style="width: 10px">STT</th>
-                                <th>Tên Danh Mục </th>
-                                <th>Slug</th>
-                                <th>Danh Mục Cha</th>
-                                <th>Trạng Thái</th>
-                                <th>Vị Trí Hiển Thị</th>
-                                <th>Hành Động</th>
+                                <th style="text-align: center">STT</th>
+                                <th style="text-align: center">Tên danh mục </th>
+                                <th style="text-align: center">Danh mục cha</th>
+                                <th style="text-align: center">Trạng thái</th>
+                                <th style="text-align: center">Vị trí</th>
+                                <th style="text-align: center">Hành động</th>
                             </tr>
 
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}">
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->slug }}</td>
-                                    <td>{{ $item->parent_id }}</td>
-                                    <td>{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
-                                    <td>{{ $item->position }}</td>
-                                    <td>
+                                    <td style="text-align: center">{{ $key + 1 }}</td>
+                                    <td style="text-align: center">{{ $item->name }}</td>
+                                    <td style="text-align: center">{{ $item->parent_id }}</td>
+                                    <td style="text-align: center">{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
+                                    <td style="text-align: center">{{ $item->position }}</td>
+                                    <td style="text-align: center">
                                         <a href="{{ route('admin.category.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
                                         <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
-
                             @endforeach
-
                             </tbody>
                         </table>
-
                     </div>
-                    <!-- /.box-body -->
                     <div class="box-footer clearfix">
                         {{ $data->links() }}
                     </div>
                 </div>
-                <!-- /.box -->
             </div>
-            <!-- /.col -->
         </div>
     </section>
-
 
 @endsection
 @section('my_js')

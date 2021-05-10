@@ -3,45 +3,40 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Quản Lý Người Dùng
-{{--            <a href="{{ route('admin.user.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i> Thêm</a>--}}
+            Danh Sách Người Dùng
+            <a style="margin-left:87rem;" href="{{ route('admin.user.create') }}" class="btn bg-orange btn-flat"><i class="fa fa-plus" style="margin-right: 10px"></i> Thêm người dùng</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="{{route('admin.product.index')}}"><i class="fa fa-home"></i> Trang chủ</a></li>
-            <li class="active">Quản Lý Người Dùng </li>
-        </ol>
     </section>
-
     <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Danh Sách Người Dùng</h3>
-                    </div>
-                    <!-- /.box-header -->
+                <div class="box box-warning">
                     <div class="box-body">
                         <table class="table table-bordered">
                             <tbody>
                             <tr>
-                                <th style="width: 10px">#</th>
-                                <th>Avatar</th>
-                                <th>Tên</th>
-                                <th>Email</th>
-                                <th>Ngày Cấp</th>
-                                <th>Trạng Thái</th>
-                                <th>Hành Động</th>
+                                <th style="text-align: center;">STT</th>
+                                <th style="text-align: center;">Ảnh đại diện</th>
+                                <th style="text-align: center;">Họ tên</th>
+                                <th style="text-align: center;">Email</th>
+                                <th style="text-align: center;">Ngày cấp</th>
+                                <th style="text-align: center;">Trạng thái</th>
+                                <th style="text-align: center;">Hành động</th>
                             </tr>
 
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}">
-                                    <td>{{ $key }}</td>
-                                    <td><img src="{{ asset($item->avatar) }}" width="50" /></td>
+                                    <td style="text-align: center;">{{ $key }}</td>
+                                    <td style="text-align: center;">
+                                        @if( ($item->avatar))
+                                            <img src="{{ asset($item->avatar) }}" width="100" height="75" alt="">
+                                        @endif
+                                    </td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
-                                    <td>{{ $item->created_at }}</td>
-                                    <td>{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
-                                    <td>
+                                    <td style="text-align: center;">{{ $item->created_at }}</td>
+                                    <td style="text-align: center;">{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
+                                    <td style="text-align: center;">
                                         <a href="{{ route('admin.user.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
                                         <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
                                     </td>

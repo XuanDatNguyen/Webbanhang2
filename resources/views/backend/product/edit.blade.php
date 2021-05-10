@@ -1,29 +1,16 @@
 @extends('backend.layouts.main')
 
 @section('content')
-    <section class="content-header">
+    <section class="content-header" >
         <h1>
-             Quản Lý Sản Phẩm
-{{--            <a href="{{route('admin.product.index')}}" class="btn bg-purple"> Danh Sách </a>--}}
+            Chỉnh Sửa Sản Phẩm
+            <a style="margin-left: 88rem;" href="{{route('admin.product.index')}}" class="btn bg-orange"><i class="fa fa-list"></i> Danh sách sản phẩm</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="{{route('admin.product.index')}}"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
-            <li><a href="{{route('admin.product.index')}}">Quản Lý Sản Phẩm</a></li>
-            <li class="active">Chỉnh Sửa Sản Phẩm </li>
-        </ol>
     </section>
-
     <section class="content">
         <div class="row">
-            <!-- left column -->
             <div class="col-md-12">
-                <!-- general form elements -->
-
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Thông Tin Sản Phẩm</h3>
-                    </div>
-
+                <div class="box box-warning">
                     <div class="row">
                         <div class="col-md-6">
                             @if ($errors->any())
@@ -39,8 +26,6 @@
                             @endif
                         </div>
                     </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
                     <form role="form" action="{{route('admin.product.update', ['id' => $data -> id])}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -49,7 +34,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputSupplier">Tên Sản Phẩm</label>
+                                        <label for="exampleInputSupplier">Tên sản phẩm</label>
                                         <input value="{{$data -> name}}" type="text" class="form-control" id="name" name="name" placeholder="Nhập tên sản phẩm">
                                         @if ($errors->has('name'))
                                             <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('name') }}</label>
@@ -68,7 +53,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputSupplier">Tùy chỉnh liên kết Url</label>
+                                        <label for="exampleInputSupplier">Liên kết URL</label>
                                         <input value="{{$data -> url}}" type="text" class="form-control" id="name" name="url" placeholder="Nhập liên kết Url">
                                     </div>
                                 </div>
@@ -82,7 +67,7 @@
                                         <input value="{{$data -> sale}}" type="text" class="form-control" id="sale" name="sale" placeholder="Nhập giá khuyến mãi">
                                     </div>
                                     <div class="form-group ">
-                                        <label for="exampleInputPassword1">Vị trí hiển thị</label>
+                                        <label for="exampleInputPassword1">Vị trí</label>
                                         <input value="{{$data -> position}}" type="number" class="form-control" id="position" name="position" placeholder="Position" min="1" value="1">
                                         @if ($errors->has('position'))
                                             {{$errors->first('position')}}
@@ -93,21 +78,20 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>
-                                                    <input {{ ($data -> is_active) ? 'checked' : '' }} type="checkbox" value="1" name="is_active">Hiển Thị
+                                                    <input {{ ($data -> is_active) ? 'checked' : '' }} type="checkbox" value="1" name="is_active">Hiển thị
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>
-                                                    <input {{ ($data -> is_hot) ? 'checked' : '' }} type="checkbox" value="1" name="is_hot">Sản Phẩm Nổi Bật
+                                                    <input {{ ($data -> is_hot) ? 'checked' : '' }} type="checkbox" value="1" name="is_hot">Sản phẩm nổi bật
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
 
                             <div class="row">
                                 <div class="col-md-12" style="margin-left: 0;">
@@ -126,28 +110,19 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputFile">Thay Đổi Ảnh Sản Phẩm</label>
+                                <label for="exampleInputFile">Thay đổi ảnh </label>
                                 <input type="file" id="image" name="image">
-                                <img src="{{ asset($data->image) }}" alt="" width="100" style="margin-top: 10px;">
+                                <img src="{{ asset($data->image) }}" alt="" width="250" style="margin-top: 10px;">
                             </div>
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Cập nhật</button>
+                                <button type="submit" class="btn bg-orange">Cập nhật</button>
                                 <button type="reset" class="btn btn-light">Hủy</button>
                             </div>
                         </div>
-                        <!-- /.box-body -->
-
-
                     </form>
                 </div>
-                <!-- /.box -->
-
-
             </div>
-            <!--/.col (right) -->
         </div>
-        <!-- /.row -->
-    </section>
 @endsection
 
 @section('my_js')

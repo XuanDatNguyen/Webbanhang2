@@ -3,15 +3,13 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Thông tin cấu hình website
+            Thông Tin Cấu Hình Website
         </h1>
     </section>
     <section class="content">
         <div class="row">
-            <!-- left column -->
             <div class="col-md-12">
-                <!-- general form elements -->
-                <div class="box box-primary">
+                <div class="box box-warning">
                     <form role="form" action="{{ route('admin.setting.update', ['id' => $setting->id ]) }}"
                           method="post" enctype="multipart/form-data">
                         @csrf
@@ -20,7 +18,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Tên Công Ty</label>
+                                        <label for="exampleInputEmail1">Tên công ty</label>
                                         <input value="{{ $setting->company }}" type="text" class="form-control"
                                                id="company"
                                                name="company" placeholder="">
@@ -28,7 +26,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">MST</label>
+                                        <label for="exampleInputEmail1">Mã số thuế</label>
                                         <input value="{{ $setting->tax }}" type="text" class="form-control" id="tax"
                                                name="tax" placeholder="">
                                     </div>
@@ -38,7 +36,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">SĐT</label>
+                                        <label for="exampleInputEmail1">Di động</label>
                                         <input value="{{ $setting->phone }}" type="text" class="form-control" id="phone"
                                                name="phone" placeholder="">
                                     </div>
@@ -74,7 +72,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Địa Chỉ 1</label>
+                                        <label for="exampleInputEmail1">Địa chỉ 1</label>
                                         <input value="{{ $setting->address }}" type="text" class="form-control"
                                                id="address"
                                                name="address" placeholder="">
@@ -82,7 +80,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Địa Chỉ 2</label>
+                                        <label for="exampleInputEmail1">Địa chỉ 2</label>
                                         <input value="{{ $setting->address2 }}" type="text" class="form-control"
                                                id="address2"
                                                name="address2" placeholder="">
@@ -103,7 +101,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Giới Thiệu Về Công Ty</label>
+                                        <label>Giới thiệu về công ty</label>
                                         <textarea id="introduce" name="introduce" class="form-control"
                                                   rows="2">{{ $setting->introduce }}</textarea>
                                     </div>
@@ -112,29 +110,21 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="exampleInputFile">Thay Đổi Logo</label>
+                            <label for="exampleInputFile">Thay đổi logo</label>
                             <input type="file" id="new_image" name="new_image"><br>
                             @if ($setting->image)
                                 <img src="{{ asset($setting->image) }}" width="200">
                             @endif
                         </div>
 
-
-                        <!-- /.box-body -->
-
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <button type="submit" class="btn bg-orange">Lưu</button>
                             <button type="reset" class="btn btn-light">Hủy</button>
                         </div>
                     </form>
                 </div>
-                <!-- /.box -->
-
-
             </div>
-            <!--/.col (right) -->
         </div>
-        <!-- /.row -->
     </section>
 @endsection
 

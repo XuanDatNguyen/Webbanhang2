@@ -2,48 +2,44 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Quản Lý Bài Viết
-            {{--            <a href="{{route('admin.article.create')}}" class="btn bg-purple"><i class="fa fa-plus"></i> Thêm tin tức</a>--}}
+            Danh Sách Bài Viết
+            <a style="margin-left: 93rem;" href="{{ route('admin.article.create') }}" class="btn bg-orange btn-flat"><i class="fa fa-plus" style="margin-right: 10px"></i> Thêm bài viết</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-home"></i> Trang Chủ</a></li>
-            <li><a href="#">Quản Lý Bài Viết</a></li>
-        </ol>
     </section>
 
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Danh Sách Tin Tức</h3>
-                    </div>
-                    <!-- /.box-header -->
+                <div class="box box-warning">
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>STT</th>
-                                <th>Hình ảnh</th>
-                                <th width="20%">Tiêu đề bài viết</th>
-                                <th width="20%">Mô tả</th>
+                                <th style="text-align: center">STT</th>
+                                <th style="text-align: center">Hình ảnh</th>
+                                <th style="text-align: center" width="20%">Tiêu đề bài viết</th>
+                                <th style="text-align: center" width="20%">Mô tả</th>
                                 <th>Danh mục</th>
-                                <th>Vị trí</th>
-                                <th>Trạng thái</th>
-                                <th>Hành động</th>
+                                <th style="text-align: center">Vị trí</th>
+                                <th style="text-align: center">Trạng thái</th>
+                                <th style="text-align: center">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}">
-                                    <td>{{ $key + 1 }}</td>
-                                    <td><img src="{{ asset($item->image) }}" width="50"/></td>
+                                    <td style="text-align: center">{{ $key + 1 }}</td>
+                                    <td style="text-align: center">
+                                        @if( ($item->image))
+                                            <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
+                                        @endif
+                                    </td>
                                     <td>{{ $item -> title }}</td>
                                     <td>{!! $item->summary !!}</td>
                                     <td>{{@$item->category->name}}</td>
-                                    <td>{{ $item->position }}</td>
-                                    <td>{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
-                                    <td>
+                                    <td style="text-align: center">{{ $item->position }}</td>
+                                    <td style="text-align: center">{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
+                                    <td style="text-align: center">
                                         <a href="{{ route('admin.article.edit', ['id' => $item->id ]) }}"
                                            class="btn btn-flat bg-purple">
                                             <i class="fa fa-pencil"></i>
@@ -56,17 +52,13 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- /.box-body -->
                     <div class="box-footer clearfix">
                         {{ $data->links() }}
                     </div>
                 </div>
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
     </section>
-
 @endsection
 @section('my_js')
     <script type="text/javascript">

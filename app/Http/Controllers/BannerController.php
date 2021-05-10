@@ -48,6 +48,7 @@ class BannerController extends Controller
             'position' => 'required',
         ],[
             'title.required' => 'Bạn cần phải nhập vào tiêu đề',
+            'image.required' => 'Bạn cần phải lựa chọn ảnh',
             'image.mimes' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
             'position.required' => 'Bạn cần phải chọn vị trí',
         ]);
@@ -172,7 +173,7 @@ class BannerController extends Controller
             $path_image = $path_upload.$filename;
             $banner->image = $path_image;
         }
-        //lưu vào db
+
         $banner->save();
         //Chuyen huong ve trang danh sach
         return redirect()->route('admin.banner.index');

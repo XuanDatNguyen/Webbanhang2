@@ -1,30 +1,16 @@
 @extends('backend.layouts.main')
 
 @section('content')
-    <section class="content-header">
+    <section class="content-header" >
         <h1>
-            Quản Lý Sản Phẩm
-            {{--            <a href="{{route('admin.product.index')}}" class="btn bg-purple"> Danh Sách </a>--}}
-
+            Thêm Mới Sản Phẩm
+            <a style="margin-left: 88rem;" href="{{route('admin.product.index')}}" class="btn bg-orange"><i class="fa fa-list"></i> Danh sách sản phẩm</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="{{route('admin.product.index')}}"><i class="fa fa-home"></i> Trang Chủ</a></li>
-            <li><a href="{{route('admin.product.index')}}">Quản Lý Sản Phẩm</a></li>
-            <li class="active">Thêm Sản Phẩm</li>
-        </ol>
     </section>
-
     <section class="content">
         <div class="row">
-            <!-- left column -->
             <div class="col-md-12">
-                <!-- general form elements -->
-
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Thông Tin Sản Phẩm</h3>
-                    </div>
-
+                <div class="box box-warning">
                     <div class="row">
                         <div class="col-md-6">
                             @if ($errors->any())
@@ -41,13 +27,10 @@
                             @endif
                         </div>
                     </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
                     <form role="form" action="{{route('admin.product.store')}}" method="post"
                           enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -61,21 +44,21 @@
                                         @endif
                                     </div>
                                     <div class="form-group">
-                                        <label for="stock">Số Lượng Trong Kho</label>
+                                        <label for="stock">Số lượng trong kho</label>
                                         <input type="text" class="form-control" id="stock" name="stock"
                                                placeholder="Nhập số lượng trong kho">
                                     </div>
                                     <div class="form-group">
-                                        <label for="categoryOption">Danh Mục Sản Phẩm</label>
+                                        <label for="categoryOption">Danh mục sản phẩm</label>
                                         <select class="form-control" name="category_id">
-                                            <option value="select"> -- chọn Danh Mục --</option>
+                                            <option value="select"> -- chọn danh mục --</option>
                                             @foreach($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <label for="exampleInputSupplier">Tùy Chỉnh Liên Kết Url</label>
+                                        <label for="exampleInputSupplier">Liên kết URL</label>
                                         <input type="text" class="form-control" id="name" name="url"
                                                placeholder="Nhập liên kết url">
                                     </div>
@@ -92,26 +75,25 @@
                                                placeholder="Nhập giá khuyến mãi">
                                     </div>
                                     <div class="form-group ">
-                                        <label for="exampleInputPassword1">Vị trí hiển thị</label>
+                                        <label for="exampleInputPassword1">Vị trí</label>
                                         <input type="number" class="form-control" id="position" name="position"
                                                placeholder="Position" min="1" value="1">
                                         @if ($errors->has('position'))
                                             {{$errors->first('position')}}
                                         @endif
                                     </div>
-                                    <br>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>
-                                                    <input type="checkbox" value="1" name="is_active"> Hiển Thị
+                                                    <input type="checkbox" value="1" name="is_active"> Hiển thị
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>
-                                                    <input type="checkbox" value="1" name="is_hot"> Sản Phẩm Nổi Bật
+                                                    <input type="checkbox" value="1" name="is_hot"> Sản phẩm nổi bật
                                                 </label>
                                             </div>
                                         </div>
@@ -134,7 +116,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Ảnh sản phẩm</label>
+                                    <label for="exampleInputFile">Thêm ảnh</label>
                                     <input type="file" id="image" name="image">
                                     @if ($errors->has('image'))
                                         <label class="text-red"
@@ -143,7 +125,7 @@
                                     @endif
                                 </div>
                                 <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                    <button type="submit" class="btn btn-warning">Lưu</button>
                                     <button type="reset" class="btn btn-light">Hủy</button>
                                 </div>
                             </div>

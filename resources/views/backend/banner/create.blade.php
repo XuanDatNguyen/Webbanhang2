@@ -3,32 +3,25 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Quản Lý Banner
+            Thêm Mới Banner
+            <a style="margin-left: 91rem;" href="{{ route('admin.banner.index') }}" class="btn bg-orange btn-flat"><i
+                    class="fa fa-list" style="margin-right: 10px"></i> Danh sách banner</a>
         </h1>
-        <ol class="breadcrumb">
-            <li><a href="{{route('admin.product.index')}}"><i class="fa fa-home"></i> Trang Chủ</a></li>
-            <li><a href="{{route('admin.banner.index')}}">Quản Lý Banner</a></li>
-            <li class="active">Thêm Banner</li>
-        </ol>
     </section>
-
-    <section class="content" >
+    <section class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Thêm Mới Banner</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <!-- form start -->
-                    <form role="form" action="{{route('admin.banner.store')}}" method="post" enctype="multipart/form-data">
+                <div class="box box-warning">
+                    <form role="form" action="{{route('admin.banner.store')}}" method="post"
+                          enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Tiêu đề</label>
-                                        <input type="text" class="form-control" id="title" name="title" placeholder="Nhập tên tiêu đề">
+                                        <input type="text" class="form-control" id="title" name="title"
+                                               placeholder="Nhập tên tiêu đề">
                                         @if ($errors->has('title'))
                                             <label> {{ $errors->first('title') }}</label>
                                         @endif
@@ -59,7 +52,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Vị trí</label>
-                                        <input type="number" class="form-control" id="position" name="position" value="">
+                                        <input type="number" class="form-control" id="position" name="position"
+                                               value="">
                                         @if ($errors->has('position'))
                                             <label> {{ $errors->first('position') }}</label>
                                         @endif
@@ -67,23 +61,26 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12"><div class="form-group">
-                                        <label for="exampleInputEmail1">Liên Kết URL</label>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Liên kết URL</label>
                                         <input type="text" class="form-control" id="url" name="url" placeholder="Url">
-                                    </div></div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Mô tả</label>
-                                        <textarea id="description" name="description" class="form-control" rows="2" placeholder="Enter ..."></textarea>
+                                        <textarea id="description" name="description" class="form-control" rows="2"
+                                                  placeholder="Enter ..."></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label for="exampleInputFile">Thêm Ảnh</label>
+                                        <label for="exampleInputFile">Thêm ảnh</label>
                                         <input type="file" id="image" name="image">
                                         @if ($errors->has('image'))
                                             <label> {{ $errors->first('image') }}</label>
@@ -93,7 +90,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>
-                                            <input type="checkbox" value="1" name="is_active">Hiển Thị
+                                            <input type="checkbox" value="1" name="is_active">Hiển thị
                                         </label>
                                     </div>
                                 </div>
@@ -101,7 +98,7 @@
                         </div>
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <button type="submit" class="btn btn-warning">Lưu</button>
                             <button type="reset" class="btn btn-light">Hủy</button>
                         </div>
                     </form>
@@ -110,8 +107,6 @@
         </div>
     </section>
 @endsection
-
-
 @section('my_js')
     <script type="text/javascript">
         $(function () {

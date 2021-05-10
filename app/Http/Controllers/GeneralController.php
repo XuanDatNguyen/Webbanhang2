@@ -36,4 +36,5 @@ class GeneralController extends Controller
             'setting' => $setting,
         ]);
     }
+
 }

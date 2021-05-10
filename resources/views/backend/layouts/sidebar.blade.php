@@ -1,7 +1,5 @@
 <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
                 <img src="{{ asset(Auth::user()->avatar) }}" class="img-circle" alt="User Image">
@@ -24,6 +22,12 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
+            <li>
+                <a href="{{route('admin.dashboard.index')}}">
+                    <i class="fa fa-dashboard" ></i>
+                    <span>Tổng Quan</span>
+                </a>
+            </li>
             <!-- Quản lý user -->
             <li class="treeview">
                 <a href="{{route('admin.category.index')}}">
@@ -90,8 +94,8 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-list"></i>  Danh Sách Nhà Cung Cấp</a></li>
-                    <li><a href="#"><i class="fa fa-plus"></i> Thêm Nhà Cung Cấp</a></li>
+                    <li><a href="{{route('admin.vendor.index')}}"><i class="fa fa-list"></i>  Danh Sách Nhà Cung Cấp</a></li>
+                    <li><a href="{{route('admin.vendor.create')}}"><i class="fa fa-plus"></i> Thêm Nhà Cung Cấp</a></li>
                 </ul>
             </li>
             <!-- Quản lý thương hiệu  -->
@@ -104,28 +108,28 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-list"></i>  Danh Sách Thương Hiệu</a></li>
-                    <li><a href="#"><i class="fa fa-plus"></i> Thêm Thương Hiệu</a></li>
+                    <li><a href="{{route('admin.brand.index')}}"><i class="fa fa-list"></i>  Danh Sách Thương Hiệu</a></li>
+                    <li><a href="{{route('admin.brand.create')}}"><i class="fa fa-plus"></i> Thêm Thương Hiệu</a></li>
                 </ul>
             </li>
             <!-- Quản lý thư viện  -->
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-book" aria-hidden="true"></i>
-                    <span>Quản Lý Thư Viện</span>
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <span>Quản Lý Giỏ Hàng</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-list"></i>  Danh Sách Thư Viện</a></li>
-                    <li><a href="#"><i class="fa fa-plus"></i> Thêm Thư Viện</a></li>
+                    <li><a href="#"><i class="fa fa-list"></i>  Danh Sách Đơn Hàng</a></li>
+                    <li><a href="#"><i class="fa fa-plus"></i> Thêm Đơn Hàng</a></li>
                 </ul>
             </li>
             <!-- Quản lý banner  -->
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-book" aria-hidden="true"></i>
+                    <i class="fa fa-image" aria-hidden="true"></i>
                     <span>Quản Lý Banner</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>

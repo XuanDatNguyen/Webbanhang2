@@ -88,24 +88,27 @@
                             <li><a href="/" class="active">Trang Chủ</a></li>
                             @foreach($categories as $cate)
                                 @if($cate->parent_id == 0)
-                                    <li class="dropdown"><a href="#">{{$cate->name}}<i class="fa fa-angle-down"></i></a>
+                                    <li class="dropdown"><a href="{{route('home.category', ['slug' => $cate->slug])}}">{{$cate->name}}<i class="fa fa-angle-down"></i></a>
                                         <ul role="menu" class="sub-menu">
                                             @foreach($categories as $child)
                                                 @if($child->parent_id == $cate->id)
-                                                    <li><a href="#">{{$child->name}}</a></li>
+                                                    <li><a href="{{route('home.category', ['slug' => $child->slug])}}">{{$child->name}}</a></li>
                                                 @endif
                                             @endforeach
                                         </ul>
                                     </li>
                                 @endif
                             @endforeach
+                            <li><a href="{{route('home.blog')}}">Tin tức</a></li>
                             <li><a href="{{route('home.contact')}}">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
+                        <form action="{{ route('home.search') }}" method="GET" >
+                            <input value="{{ isset($keyword) ? $keyword : '' }}" name="tu-khoa" type="text" placeholder="Tìm kiếm"/>
+                        </form>
                     </div>
                 </div>
             </div>
