@@ -17,25 +17,9 @@
             <div class="row">
                 <div class="col-sm-2">
                     <div class="single-widget">
-                        <h2>Service</h2>
+                        <h2>Mã số thuế</h2>
                         <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">Online Help</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Order Status</a></li>
-                            <li><a href="#">Change Location</a></li>
-                            <li><a href="#">FAQ’s</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-sm-2">
-                    <div class="single-widget">
-                        <h2>Quock Shop</h2>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#">T-Shirt</a></li>
-                            <li><a href="#">Mens</a></li>
-                            <li><a href="#">Womens</a></li>
-                            <li><a href="#">Gift Cards</a></li>
-                            <li><a href="#">Shoes</a></li>
+                            <li><a href="#">{{$setting->tax}}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -44,6 +28,7 @@
                         <h2>Hotline</h2>
                         <ul class="nav nav-pills nav-stacked">
                             <li><a href="#">{{$setting->hotline}}</a></li>
+                            <li><a href="#">{{$setting->phone}}</a></li>
                         </ul>
                     </div>
                 </div>
