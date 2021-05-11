@@ -18,12 +18,6 @@ class GeneralController extends Controller
             'is_active' => 1
         ])->orderBy('position', 'ASC')->get();
 
-        // Danh mục
-//        $menu = Category::where('is_active',1)->orderBy('position','ASC')
-//            ->orderBy('id','DESC')->get();
-
-//        $menu_brand = Brand::where('is_active',1)->orderBy('position','ASC')
-//            ->orderBy('id','DESC')->get();
 
         // Cấu hình
         $setting = Setting::first();
@@ -31,8 +25,6 @@ class GeneralController extends Controller
         // chia sẻ dữ liệu qua nhiều view khác nhau
         view()->share([
             'categories' => $categories,
-//            'menu_brand' => $menu_brand,
-//            'menu' => $menu,
             'setting' => $setting,
         ]);
     }

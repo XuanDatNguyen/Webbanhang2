@@ -23,7 +23,7 @@ class HomeController extends GeneralController
             ->orderBy('position','DESC')
             ->get();
         $products  = Product::where(['is_active'=>1])
-            ->limit(12)
+            ->limit(9)
             ->orderBy('position','DESC')
             ->get();
 
