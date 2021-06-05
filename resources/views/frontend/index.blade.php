@@ -54,7 +54,6 @@
                                             <img src="{{asset($product->image)}}" alt="" />
                                             <h2>{{number_format($product->price,0,",",".")}} VNĐ</h2>
                                             <p>{{$product->name}}</p>
-                                            <a href="{{route('home.card')}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ Hàng</a>
                                         </div>
                                     </div>
                                     <div class="choose">

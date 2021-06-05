@@ -120,9 +120,6 @@ class HomeController extends GeneralController
     }
 
 
-    public function card() {
-        return view('frontend.card');
-    }
 
     public function search(Request $request) {
         // b1. Lấy từ khóa tìm kiếm

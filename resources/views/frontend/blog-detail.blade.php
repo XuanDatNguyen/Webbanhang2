@@ -28,7 +28,7 @@
                                 <a href="">
                                     <img src="{{asset($detailArticles->image)}}" alt="">
                                 </a>
-                                <p>{{$detailArticles->description}}</p>
+                                <p>{!! $detailArticles->description !!}</p>
                             </div>
                         </div>
 

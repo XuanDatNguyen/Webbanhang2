@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
+use App\OrderStatus;
 use Illuminate\Http\Request;
 
-class CardController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,10 @@ class CardController extends Controller
      */
     public function index()
     {
-        //
+        $order = Order::latest() -> paginate(10);
+        return view('backend.order.index', [
+            'data' => $order
+        ]);
     }
 
     /**
@@ -56,7 +61,16 @@ class CardController extends Controller
      */
     public function edit($id)
     {
-        //
+        // lấy chi tiết đơn hàng
+        $order = Order::find($id);
+        // lấy tât cả trạng thái đơn hàng lưu trong database, cái này chưa có chức năng quản trị
+        // các em về làm thêm chức năng Create,update, edit,..
+        $order_status = OrderStatus::all();
+
+        return view('backend.order.detail', [
+            'order' => $order,
+            'order_status' => $order_status
+        ]);
     }
 
     /**
@@ -68,7 +82,17 @@ class CardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $address2 = $request->address2;
+        $note = $request->note;
+        $id_status = $request->order_status_id;
+
+        $order = Order::findorFail($id);
+        $order->address2 = $address2;
+        $order->note = $note;
+        $order->order_status_id = $id_status;
+        $order->save();
+
+        return redirect()->back()->with('msg', 'Cập nhật đơn hàng thành công');
     }
 
     /**
@@ -80,5 +104,16 @@ class CardController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function removeToCart(Request $request)
+    {
+        $order_detail_id = $request->input('order_detail_id');
+        $order_id = $request->input('order_id');
+
+        return response()->json([
+            'status'  => true ,
+            'data' => 'Xóa sản phẩm thành công'
+        ]);
     }
 }

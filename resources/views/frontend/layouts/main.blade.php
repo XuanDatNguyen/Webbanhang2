@@ -47,5 +47,8 @@
 <script src="/frontend/js/price-range.js"></script>
 <script src="/frontend/js/jquery.prettyPhoto.js"></script>
 <script src="/frontend/js/main.js"></script>
+
+@yield('my_javascript')
+
 </body>
 </html>

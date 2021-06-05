@@ -21,12 +21,12 @@
                                 <span>
 									<span>VNĐ {{number_format($product->price,0,",",".")}} VNĐ</span>
 									<label>Số Lượng:</label>
-									<input type="text" value="3" />
+									<input type="text" value="1" />
 {{--									<button type="button" class="btn btn-fefault cart">--}}
 {{--										<i class="fa fa-shopping-cart"></i>--}}
 {{--										Add to cart--}}
 {{--									</button>--}}
-                                    <a href="{{route('home.card')}}" class="btn btn-default cart"><i class="fa fa-shopping-cart"></i>Mua Hàng</a>
+                                    <a href="{{route('home.cart.add-to-cart',['id' => $product -> id])}}" class="btn btn-default cart"><i class="fa fa-shopping-cart"></i>Mua Hàng</a>
 								</span>
                                 <p><b>Tình trạng:</b> {{($product->stock) > 0 ? 'Còn hàng' : 'hết hàng'}}</p>
                             </div><!--/product-information-->
@@ -35,37 +35,24 @@
 
                     <div class="recommended_items"><!--recommended_items-->
                         <h2 class="title text-center">recommended items</h2>
-
                         <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
-                                @foreach($recommendedProducts as $product)
-                                    <div class="item active">
-                                        <div class="col-sm-4">
-                                            <div class="product-image-wrapper">
-                                                <div class="single-products">
-                                                    <div class="productinfo text-center">
-                                                        <img src="{{asset($product->image)}}" alt="" />
-                                                        <h2>{{number_format($product->price,0,",",".")}}</h2>
-                                                        <p>{{$product->name}}</p>
-                                                        <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                @foreach($recommendedProducts as $key => $product)
+                                    <div class="item {{$key == 0 ? 'active' : ''}}">
+                                        <a href="{{route('home.productDetails',['slug' => $product -> slug])}}">
+                                            <div class="col-sm-4">
+                                                <div class="product-image-wrapper">
+                                                    <div class="single-products">
+                                                        <div class="productinfo text-center">
+                                                            <img src="{{asset($product->image)}}" alt="" />
+                                                            <h2>{{number_format($product->price,0,",",".")}}</h2>
+                                                            <p>{{$product->name}}</p>
+                                                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="item">
-                                        <div class="col-sm-4">
-                                            <div class="product-image-wrapper">
-                                                <div class="single-products">
-                                                    <div class="productinfo text-center">
-                                                        <img src="{{asset($product->image)}}" alt="" />
-                                                        <h2>{{number_format($product->price,0,",",".")}}</h2>
-                                                        <p>{{$product->name}}</p>
-                                                        <a href="{{route('home.card')}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ Hàng</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </a>
                                     </div>
                                 @endforeach
                             </div>

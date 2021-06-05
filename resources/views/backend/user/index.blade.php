@@ -2,10 +2,28 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Danh Sách Người Dùng
-            <a style="margin-left:87rem;" href="{{ route('admin.user.create') }}" class="btn bg-orange btn-flat"><i class="fa fa-plus" style="margin-right: 10px"></i> Thêm người dùng</a>
-        </h1>
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Danh Sách Người Dùng</h1>
+                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-warning">
+                    Launch Warning Modal
+                </button>
+            </div>
+            <div class="col-md-4" style="display: flex; top: 23px">
+                <form action="#" method="get">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="bg-orange btn btn-flat"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>
+                <div style="width: 150px">
+                    <a style="z-index: 10" href="{{ route('admin.user.create') }}" class="btn bg-orange btn-flat"><i
+                            class="fa fa-plus" style="margin-right: 10px"></i> Thêm người dùng</a>
+                </div>
+            </div>
+        </div>
     </section>
     <section class="content">
         <div class="row">
@@ -37,16 +55,15 @@
                                     <td style="text-align: center;">{{ $item->created_at }}</td>
                                     <td style="text-align: center;">{{ $item->is_active == 1 ? 'Hiển thị' : 'Ẩn' }}</td>
                                     <td style="text-align: center;">
-                                        <a href="{{ route('admin.user.edit', ['id' => $item->id ]) }}" class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
-                                        <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i class="fa fa-trash"></i></button>
+                                        <a href="{{ route('admin.user.edit', ['id' => $item->id ]) }}"
+                                           class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
+                                        <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i
+                                                class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
-
                             @endforeach
-
                             </tbody>
                         </table>
-
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
@@ -62,15 +79,15 @@
 
 @section('my_js')
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Thiết lập csrf => chổng giả mạo
             $.ajaxSetup({
                 headers: {
-                    'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             })
 
-            $('.btn-delete').on('click',function () {
+            $('.btn-delete').on('click', function () {
 
                 let id = $(this).data('id');
 
@@ -79,11 +96,11 @@
                 if (result) { // neu nhấn == ok , sẽ send request ajax
 
                     $.ajax({
-                        url: '/admin/user/'+id, // http://webthucpham.local:8888/user/8
+                        url: '/admin/user/' + id, // http://webthucpham.local:8888/user/8
                         type: 'DELETE', // phương truyền tải dữ liệu
                         data: {
                             // dữ liệu truyền sang nếu có
-                            name : 'dung'
+                            name: 'dung'
                         },
                         dataType: "json", // kiểu dữ liệu muốn nhận về
                         success: function (res) {
@@ -91,7 +108,7 @@
                             //  JS: res.name
 
                             if (res.success != 'undefined' && res.success == 1) { // xóa thành công
-                                $('.item-'+id).remove();
+                                $('.item-' + id).remove();
                             }
                         },
                         error: function (e) { // lỗi nếu có

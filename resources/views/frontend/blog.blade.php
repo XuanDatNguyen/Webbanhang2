@@ -29,7 +29,7 @@
                                 <a href="">
                                     <img src="{{asset($article->image)}}" alt="">
                                 </a>
-                                <p>{{$article->summary}}</p>
+                                <p>{!!$article->summary!!}</p>
                                 <a  class="btn btn-primary" href="{{route('home.blogDetails',['slug' => $article->slug])}}">Đọc tiếp</a>
                             </div>
                         @endforeach

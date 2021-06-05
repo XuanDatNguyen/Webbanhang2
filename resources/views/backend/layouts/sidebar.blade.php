@@ -112,20 +112,6 @@
                     <li><a href="{{route('admin.brand.create')}}"><i class="fa fa-plus"></i> Thêm Thương Hiệu</a></li>
                 </ul>
             </li>
-            <!-- Quản lý thư viện  -->
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <span>Quản Lý Giỏ Hàng</span>
-                    <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-list"></i>  Danh Sách Đơn Hàng</a></li>
-                    <li><a href="#"><i class="fa fa-plus"></i> Thêm Đơn Hàng</a></li>
-                </ul>
-            </li>
             <!-- Quản lý banner  -->
             <li class="treeview">
                 <a href="#">
@@ -140,6 +126,13 @@
                     <li><a href="{{route('admin.banner.create')}}"><i class="fa fa-plus"></i> Thêm Banner</a></li>
                 </ul>
             </li>
+            <!-- Quản lý đơn đặt hàng  -->
+            <li class="">
+                <a href="{{route('admin.order.index')}}">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <span>Quản Lý Đơn Đặt Hàng</span>
+                </a>
+            </li>
             <!--Quản lý liên hệ-->
             <li class="">
                 <a href="{{route('admin.contact.index')}}">
@@ -151,7 +144,7 @@
             <li class="">
                 <a href="{{route('admin.setting.index')}}">
                     <i class="fa fa-gears" aria-hidden="true"></i>
-                    <span>Cấu Hình Website</span>
+                    <span>Cấu Hình Chung</span>
                 </a>
             </li>
 

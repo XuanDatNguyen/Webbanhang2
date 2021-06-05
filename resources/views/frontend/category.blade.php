@@ -20,7 +20,7 @@
                                             </a>
                                             <h2>{{ number_format($product->price,0,",",".") }}VNĐ</h2>
                                             <a href="{{ route('home.productDetails', ['slug' => $product->slug , 'id' => $product->id]) }}" title="{{ $product->name }}"><p>{{ $product->name }}</p></a>
-                                            <a href="{{route('home.card')}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
+                                            <a href="{{route('home.cart')}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</a>
                                         </div>
                                     </div>
                                     <div class="choose">
